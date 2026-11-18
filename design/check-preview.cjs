@@ -1,0 +1,26 @@
+const { chromium } = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
+const { pathToFileURL } = require('url');
+const path = require('path');
+(async () => {
+  const browser = await chromium.launch({headless:true,channel:'msedge'});
+  const page = await browser.newPage({viewport:{width:1100,height:1100},deviceScaleFactor:1});
+  const errors=[];page.on('pageerror', e=>errors.push(e.message));
+  await page.goto(pathToFileURL(path.join(__dirname,'preview.html')).href);
+  await page.screenshot({path:path.join(__dirname,'preview.png'),fullPage:true});
+  await page.locator('.setting-row').first().click();
+  if(!await page.locator('#history').evaluate(el=>el.classList.contains('open'))) throw Error('History did not open');
+  await page.keyboard.press('Escape');
+  await page.locator('.tabs button').nth(1).click();
+  if(!await page.locator('#expense-list').isHidden()) throw Error('Filter did not change');
+  await page.locator('.tabs button').first().click();
+  await page.locator('.actions button').first().click();
+  if(!await page.locator('#notice').isVisible()) throw Error('Dialog failed');
+  await page.keyboard.press('Escape');
+  await page.setViewportSize({width:375,height:950});
+  const overflow = await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth);
+  if(overflow) throw Error('Mobile horizontal overflow');
+  await page.screenshot({path:path.join(__dirname,'preview-mobile.png'),fullPage:true});
+  if(errors.length) throw Error(errors.join('\n'));
+  console.log('Passed: history, filter, dialog, 375px viewport, no page errors.');
+  await browser.close();
+})().catch(e=>{console.error(e);process.exit(1)});

@@ -1,0 +1,25 @@
+// 页面文字统一在这里修改；保留字段名，仅替换引号内的文字。
+window.PAGE_COPY = {
+  app: '生活费', overview: '首页', settings: '设置', month: '2026 年 11 月',
+  budget: '本月预算', amount: '3,000', decimals: '.00',
+  required: '预计支出', requiredAmount: '¥ 2,180.00',
+  remaining: '预算余量', remainingAmount: '¥ 820.00',
+  cost: '每日成本', costAmount: '68.50', costUnit: '元 / 天',
+  paid: '本月已付', paidAmount: '1,860', paidUnit: '元',
+  addSubscription: '添加订阅', addExpense: '添加花费',
+  expenses: '费用明细', active: '进行中', upcoming: '待开始',
+  rent: '房租', rentPeriod: '11.01 — 11.30', rentAmount: '¥ 1,500', rentDaily: '¥ 50.00 / 天',
+  music: '音乐订阅', musicPeriod: '11.01 — 11.30', musicAmount: '¥ 30', musicDaily: '¥ 1.00 / 天',
+  electricity: '电费', electricityPeriod: '11.01 — 11.30', electricityAmount: '¥ 120', electricityDaily: '¥ 4.00 / 天',
+  budgetSetting: '预算设置', monthly: '每月生活费', budgetValue: '¥ 3,000.00',
+  general: '通用', history: '历史记录', historyHint: '已结束的订阅与花费',
+  appearance: '外观', appearanceValue: '跟随系统', reminders: '到期提醒',
+  data: '数据管理', backup: '导出备份', restore: '恢复数据',
+  about: '关于', update: '检查更新', version: 'v1.0.0',
+  back: '返回', sort: '按添加时间排序', total: '总花费',
+  historyName: '视频订阅', historyAdded: '添加时间：2026.08.18 10:32',
+  historyPeriod: '2026.08.18 — 2026.11.17', historyDays: '共 92 天 · 已过 92 天', historyAmount: '¥ 60.00',
+  demoTitle: '布局预览', demoBody: '当前为页面演示，功能将在开发时接入。', close: '关闭',
+  previewTitle: '页面设计', previewSubtitle: '首页 / 设置', previewBadge: 'ANDROID · UI PREVIEW',
+  previewNote: '示例文字与金额可在 content.js 中替换。'
+};

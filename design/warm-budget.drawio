@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net">
+  <diagram name="首页" id="首页">
+    <mxGraphModel pageWidth="390" pageHeight="920" background="#FAF6F0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2" value="暖暖生活费&#10;把日子过得心里有数" style="rounded=1;arcSize=20;whiteSpace=wrap;html=0;fillColor=#FAF6F0;strokeColor=none;fontColor=#3D3B32;fontSize=22;fontFamily=Microsoft YaHei;align=left;spacingLeft=18;" vertex="1" parent="1">
+          <mxGeometry x="20" y="50" width="350" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="3" value="2026 年 11 月                   ‹   ›&#10;本月生活费&#10;¥ 3,000.00&#10;预计需准备 ¥ 2,180.00&#10;预算余量 ¥ 820.00&#10;按已记录费用估算" style="rounded=1;arcSize=20;whiteSpace=wrap;html=0;fillColor=#F2DFC9;strokeColor=none;fontColor=#3D3B32;fontSize=20;fontFamily=Microsoft YaHei;align=left;spacingLeft=18;" vertex="1" parent="1">
+          <mxGeometry x="20" y="128" width="350" height="232" as="geometry" />
+        </mxCell>
+        <mxCell id="4" value="今日分摊成本&#10;¥ 68.50&#10;含订阅和日常费用" style="rounded=1;arcSize=20;whiteSpace=wrap;html=0;fillColor=#FFFCF7;strokeColor=none;fontColor=#3D3B32;fontSize=17;fontFamily=Microsoft YaHei;align=left;spacingLeft=18;" vertex="1" parent="1">
+          <mxGeometry x="20" y="374" width="169" height="108" as="geometry" />
+        </mxCell>
+        <mxCell id="5" value="本月实际已付&#10;¥ 1,860.00&#10;剩余待付 ¥ 320.00" style="rounded=1;arcSize=20;whiteSpace=wrap;html=0;fillColor=#FFFCF7;strokeColor=none;fontColor=#3D3B32;fontSize=17;fontFamily=Microsoft YaHei;align=left;spacingLeft=18;" vertex="1" parent="1">
+          <mxGeometry x="201" y="374" width="169" height="108" as="geometry" />
+        </mxCell>
+        <mxCell id="6" value="＋ 添加订阅" style="rounded=1;arcSize=20;whiteSpace=wrap;html=0;fillColor=#94583D;strokeColor=none;fontColor=#FFFFFF;fontSize=17;fontFamily=Microsoft YaHei;align=left;spacingLeft=18;" vertex="1" parent="1">
+          <mxGeometry x="20" y="498" width="169" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="7" value="＋ 记一笔花费" style="rounded=1;arcSize=20;whiteSpace=wrap;html=0;fillColor=#EBDCCB;strokeColor=none;fontColor=#3D3B32;fontSize=17;fontFamily=Microsoft YaHei;align=left;spacingLeft=18;" vertex="1" parent="1">
+          <mxGeometry x="201" y="498" width="169" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="8" value="我的费用       生效中 · 待开始" style="rounded=1;arcSize=20;whiteSpace=wrap;html=0;fillColor=#FAF6F0;strokeColor=none;fontColor=#3D3B32;fontSize=18;fontFamily=Microsoft YaHei;align=left;spacingLeft=18;" vertex="1" parent="1">
+          <mxGeometry x="20" y="570" width="350" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="9" value="♫  音乐会员                  ¥ 30.00&#10;11.01 – 11.30 · 30 天&#10;日均 ¥ 1.00                   剩余 12 天" style="rounded=1;arcSize=20;whiteSpace=wrap;html=0;fillColor=#FFFCF7;strokeColor=none;fontColor=#3D3B32;fontSize=16;fontFamily=Microsoft YaHei;align=left;spacingLeft=18;" vertex="1" parent="1">
+          <mxGeometry x="20" y="620" width="350" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="10" value="⌂  房租                      ¥ 1,500.00&#10;11.01 – 11.30 · 30 天&#10;日均 ¥ 50.00                  剩余 12 天" style="rounded=1;arcSize=20;whiteSpace=wrap;html=0;fillColor=#FFFCF7;strokeColor=none;fontColor=#3D3B32;fontSize=16;fontFamily=Microsoft YaHei;align=left;spacingLeft=18;" vertex="1" parent="1">
+          <mxGeometry x="20" y="728" width="350" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="11" value="⌂ 首页                         ⚙ 设置" style="rounded=1;arcSize=20;whiteSpace=wrap;html=0;fillColor=#EBDCCB;strokeColor=none;fontColor=#3D3B32;fontSize=18;fontFamily=Microsoft YaHei;align=left;spacingLeft=18;" vertex="1" parent="1">
+          <mxGeometry x="20" y="840" width="350" height="54" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="设置" id="设置">
+    <mxGraphModel pageWidth="390" pageHeight="920" background="#FAF6F0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2" value="设置&#10;让记录更合你的习惯" style="rounded=1;arcSize=20;whiteSpace=wrap;html=0;fillColor=#FAF6F0;strokeColor=none;fontColor=#3D3B32;fontSize=22;fontFamily=Microsoft YaHei;align=left;spacingLeft=18;" vertex="1" parent="1">
+          <mxGeometry x="20" y="50" width="350" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="3" value="每月生活费                     ›&#10;¥ 3,000.00&#10;默认沿用，可单独调整某月" style="rounded=1;arcSize=20;whiteSpace=wrap;html=0;fillColor=#F2DFC9;strokeColor=none;fontColor=#3D3B32;fontSize=18;fontFamily=Microsoft YaHei;align=left;spacingLeft=18;" vertex="1" parent="1">
+          <mxGeometry x="20" y="128" width="350" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="4" value="记账偏好&#10;记账时区            上海 UTC+8&#10;默认币种                       人民币" style="rounded=1;arcSize=20;whiteSpace=wrap;html=0;fillColor=#FFFCF7;strokeColor=none;fontColor=#3D3B32;fontSize=17;fontFamily=Microsoft YaHei;align=left;spacingLeft=18;" vertex="1" parent="1">
+          <mxGeometry x="20" y="252" width="350" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="5" value="◷  历史记录                     ›&#10;到期的订阅和花费都在这里&#10;按添加时间从新到旧排列" style="rounded=1;arcSize=20;whiteSpace=wrap;html=0;fillColor=#FFFCF7;strokeColor=none;fontColor=#3D3B32;fontSize=17;fontFamily=Microsoft YaHei;align=left;spacingLeft=18;" vertex="1" parent="1">
+          <mxGeometry x="20" y="392" width="350" height="98" as="geometry" />
+        </mxCell>
+        <mxCell id="6" value="备份与恢复&#10;导出备份                         ›&#10;从文件恢复                       ›" style="rounded=1;arcSize=20;whiteSpace=wrap;html=0;fillColor=#FFFCF7;strokeColor=none;fontColor=#3D3B32;fontSize=17;fontFamily=Microsoft YaHei;align=left;spacingLeft=18;" vertex="1" parent="1">
+          <mxGeometry x="20" y="510" width="350" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="7" value="外观与提醒&#10;主题跟随系统 · 到期提醒" style="rounded=1;arcSize=20;whiteSpace=wrap;html=0;fillColor=#FFFCF7;strokeColor=none;fontColor=#3D3B32;fontSize=17;fontFamily=Microsoft YaHei;align=left;spacingLeft=18;" vertex="1" parent="1">
+          <mxGeometry x="20" y="630" width="350" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="8" value="关于暖暖生活费&#10;当前版本 1.0.0       检查更新 ›" style="rounded=1;arcSize=20;whiteSpace=wrap;html=0;fillColor=#FFFCF7;strokeColor=none;fontColor=#3D3B32;fontSize=17;fontFamily=Microsoft YaHei;align=left;spacingLeft=18;" vertex="1" parent="1">
+          <mxGeometry x="20" y="736" width="350" height="88" as="geometry" />
+        </mxCell>
+        <mxCell id="9" value="⌂ 首页                         ⚙ 设置" style="rounded=1;arcSize=20;whiteSpace=wrap;html=0;fillColor=#EBDCCB;strokeColor=none;fontColor=#3D3B32;fontSize=18;fontFamily=Microsoft YaHei;align=left;spacingLeft=18;" vertex="1" parent="1">
+          <mxGeometry x="20" y="840" width="350" height="54" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

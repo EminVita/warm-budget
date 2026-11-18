@@ -1,0 +1,14 @@
+.gradle/
+.kotlin/
+.tools/
+**/build/
+local.properties
+*.jks
+*.keystore
+keystore.properties
+.idea/
+*.iml
+__pycache__/
+dist/
+# Generated embedded-image diagram; rebuild with design/flow/build_flow.py.
+design/flow/interaction-flow.drawio
