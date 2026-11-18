@@ -1,0 +1,51 @@
+name: Publish signed update
+on:
+  push:
+    branches: [main]
+    paths: ['downloads/*.apk', 'update.json', '.github/workflows/publish.yml']
+  workflow_dispatch:
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate update metadata and package
+        id: metadata
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json, os, re, hashlib, zipfile
+          from pathlib import Path
+          data=json.loads(Path('update.json').read_text())
+          version=data['versionName']
+          assert re.fullmatch(r'\d+\.\d+\.\d+',version)
+          assert isinstance(data['versionCode'],int) and data['versionCode']>0
+          apk=Path(f'downloads/living-budget-{version}.apk')
+          assert apk.is_file()
+          expected=f'https://github.com/{os.environ["GITHUB_REPOSITORY"]}/releases/download/v{version}/{apk.name}'
+          assert data['downloadUrl']==expected
+          with zipfile.ZipFile(apk) as z:
+              assert z.testzip() is None and 'AndroidManifest.xml' in z.namelist()
+          Path('release-notes.txt').write_text(data['notes'],encoding='utf-8')
+          Path('SHA256SUMS.txt').write_text(hashlib.sha256(apk.read_bytes()).hexdigest()+'  '+apk.name+'\n')
+          with open(os.environ['GITHUB_OUTPUT'],'a') as out:
+              out.write(f'tag=v{version}\napk={apk}\nversion={version}\n')
+          PY
+      - name: Publish APK and manifest
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          TAG: ${{ steps.metadata.outputs.tag }}
+          APK: ${{ steps.metadata.outputs.apk }}
+          VERSION: ${{ steps.metadata.outputs.version }}
+        run: |
+          set -euo pipefail
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo 'Release already exists; refusing to replace immutable update assets.'
+            exit 0
+          fi
+          gh release create "$TAG" "$APK" update.json SHA256SUMS.txt --target "$GITHUB_SHA" --title "$VERSION" --notes-file release-notes.txt

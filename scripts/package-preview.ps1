@@ -8,7 +8,9 @@ New-Item -ItemType Directory -Force $output | Out-Null
 $key = Join-Path $env:USERPROFILE '.android\debug.keystore'
 if (!(Test-Path $key)) { throw 'Build assembleDebug first to create the local test key.' }
 $signer = Join-Path $repo '.tools\android-sdk\build-tools\36.0.0\apksigner.bat'
-$apk = Join-Path $output 'living-budget-0.2.0-preview.apk'
+$metadata = Get-Content -Raw (Join-Path $repo 'app\build\outputs\apk\release\output-metadata.json') | ConvertFrom-Json
+$version = $metadata.elements[0].versionName
+$apk = Join-Path $output "living-budget-$version-preview.apk"
 & $signer sign --ks $key --ks-key-alias androiddebugkey --ks-pass pass:android --key-pass pass:android --out $apk (Join-Path $repo 'app\build\outputs\apk\release\app-release-unsigned.apk')
 if ($LASTEXITCODE -ne 0) { throw 'Preview signing failed.' }
 & $signer verify --verbose $apk

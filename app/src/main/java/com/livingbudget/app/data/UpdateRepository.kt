@@ -17,6 +17,8 @@ class UpdateRepository(context: Context) {
         val connection=URL(manifestUrl).openConnection() as HttpURLConnection
         try {
             connection.connectTimeout=15000;connection.readTimeout=15000;connection.instanceFollowRedirects=false
+            connection.useCaches=false
+            connection.setRequestProperty("Cache-Control","no-cache")
             require(connection.responseCode==200)
             val raw=connection.inputStream.use { it.readBytesLimited(256_000).toString(Charsets.UTF_8) }
             val json=JSONObject(raw)
