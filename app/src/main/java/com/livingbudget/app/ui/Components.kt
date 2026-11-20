@@ -1,6 +1,7 @@
 package com.livingbudget.app.ui
 
-import androidx.compose.foundation.Canvas
+import androidx.compose.ui.res.painterResource
+import com.livingbudget.app.R
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -18,29 +19,21 @@ import androidx.compose.ui.unit.dp
 
 enum class Glyph { HOME, SETTINGS, PLUS, LEAF, WALLET, HISTORY, BELL, SUN, DOWNLOAD, UPLOAD, ARROW, BACK }
 @Composable fun LineIcon(glyph: Glyph,description: String?=null) {
-    val color=MaterialTheme.colorScheme.primary
-    Canvas(Modifier.size(22.dp).then(if(description!=null)Modifier.semantics { contentDescription=description } else Modifier)) {
-        val u=size.width/24f
-        fun line(x1:Float,y1:Float,x2:Float,y2:Float) { drawLine(color,Offset(x1*u,y1*u),Offset(x2*u,y2*u),1.6f*u) }
-        fun path(vararg points: Pair<Float,Float>) { val p=Path();points.forEachIndexed { i,v->if(i==0)p.moveTo(v.first*u,v.second*u) else p.lineTo(v.first*u,v.second*u) };drawPath(p,color,style=Stroke(1.6f*u)) }
-        when(glyph) {
-            Glyph.HOME -> { path(3f to 10f,12f to 3f,21f to 10f);path(5f to 9f,5f to 21f,10f to 21f,10f to 15f,14f to 15f,14f to 21f,19f to 21f,19f to 9f) }
-            Glyph.PLUS -> { line(12f,5f,12f,19f);line(5f,12f,19f,12f) }
-            Glyph.ARROW -> path(9f to 5f,16f to 12f,9f to 19f)
-            Glyph.BACK -> path(15f to 5f,8f to 12f,15f to 19f)
-            Glyph.WALLET -> { path(4f to 6f,20f to 6f,20f to 20f,4f to 20f,4f to 4f,16f to 4f);path(15f to 11f,22f to 11f,22f to 16f,15f to 16f,15f to 11f) }
-            Glyph.LEAF -> { val p=Path();p.moveTo(5*u,19*u);p.cubicTo(1*u,8*u,9*u,3*u,20*u,4*u);p.cubicTo(20*u,16*u,13*u,21*u,7*u,17*u);drawPath(p,color,style=Stroke(1.6f*u));line(5f,20f,16f,9f) }
-            Glyph.HISTORY -> { drawCircle(color,8*u,Offset(13*u,12*u),style=Stroke(1.6f*u));path(3f to 4f,3f to 11f,10f to 11f);path(13f to 7f,13f to 12f,17f to 15f) }
-            Glyph.BELL -> { path(5f to 17f,19f to 17f,17f to 13f,17f to 8f,14f to 4f,10f to 4f,7f to 8f,7f to 13f,5f to 17f);line(10f,21f,14f,21f) }
-            Glyph.DOWNLOAD,Glyph.UPLOAD -> {
-                val down=glyph==Glyph.DOWNLOAD
-                line(12f,3f,12f,16f);path(7f to (if(down)11f else 8f),12f to (if(down)16f else 3f),17f to (if(down)11f else 8f))
-                path(4f to 17f,4f to 21f,20f to 21f,20f to 17f)
-            }
-            Glyph.SUN,Glyph.SETTINGS -> { drawCircle(color,4*u,Offset(12*u,12*u),style=Stroke(1.6f*u));
-                for(i in 0..7){val a=i*Math.PI/4;line((12+8*kotlin.math.cos(a)).toFloat(),(12+8*kotlin.math.sin(a)).toFloat(),(12+10*kotlin.math.cos(a)).toFloat(),(12+10*kotlin.math.sin(a)).toFloat())} }
-        }
+    val resource=when(glyph) {
+        Glyph.HOME -> R.drawable.ic_tabler_home
+        Glyph.SETTINGS -> R.drawable.ic_tabler_settings
+        Glyph.PLUS -> R.drawable.ic_tabler_plus
+        Glyph.LEAF -> R.drawable.ic_tabler_leaf
+        Glyph.WALLET -> R.drawable.ic_tabler_wallet
+        Glyph.HISTORY -> R.drawable.ic_tabler_history
+        Glyph.BELL -> R.drawable.ic_tabler_bell
+        Glyph.SUN -> R.drawable.ic_tabler_sun
+        Glyph.DOWNLOAD -> R.drawable.ic_tabler_download
+        Glyph.UPLOAD -> R.drawable.ic_tabler_upload
+        Glyph.ARROW -> R.drawable.ic_tabler_chevron_right
+        Glyph.BACK -> R.drawable.ic_tabler_chevron_left
     }
+    Icon(painterResource(resource),contentDescription=description,modifier=Modifier.size(22.dp),tint=LocalContentColor.current)
 }
 @Composable fun WarmCard(modifier: Modifier=Modifier,tinted: Boolean=false,content: @Composable ColumnScope.()->Unit) {
     Surface(modifier=modifier.fillMaxWidth(),shape=RoundedCornerShape(24.dp),

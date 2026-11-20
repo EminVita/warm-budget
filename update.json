@@ -1,6 +1,6 @@
 {
-  "versionCode": 3,
-  "versionName": "0.2.1",
-  "downloadUrl": "https://github.com/EminVita/warm-budget/releases/download/v0.2.1/living-budget-0.2.1.apk",
-  "notes": "启用在线检查更新。可在设置中检查新版本，点击前往下载后由安卓确认覆盖安装。"
+  "versionCode": 5,
+  "versionName": "0.3.1",
+  "downloadUrl": "https://github.com/EminVita/warm-budget/releases/download/v0.3.1/living-budget-0.3.1.apk",
+  "notes": "采用鼠尾草绿背景与图标，移除待开始入口。首页改为本月日均成本：本月分摊成本除以该月实际天数，单日花费同样参与月日均；历史数据保留。"
 }

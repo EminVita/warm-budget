@@ -26,7 +26,7 @@ class BudgetViewModel(application: Application): AndroidViewModel(application) {
         val all=rows.map { it.domain() }
         ui.copy(copy=copy,expenses=all,preferences=prefs,
             summary=Ledger.summary(all,ui.month,ui.today),budget=Ledger.budget(budgets.map { it.domain() },ui.month),
-            visible=all.filter { it.status(ui.today)==if(ui.upcoming)ExpenseStatus.UPCOMING else ExpenseStatus.ACTIVE },
+            visible=Ledger.active(all,ui.today),
             history=Ledger.history(all,ui.today).filter { (ui.historyType==null || it.type==ui.historyType) &&
                 (it.title.contains(ui.query,true) || it.note.contains(ui.query,true)) },
             selected=ui.selected?.let { selected -> all.find { it.id==selected.id } })
@@ -54,7 +54,7 @@ class BudgetViewModel(application: Application): AndroidViewModel(application) {
             is Action.Navigate -> mutate { it.copy(page=action.page,panel=Panel.NONE,error=null) }
             is Action.Month -> mutate { it.copy(month=it.month.plusMonths(action.delta)) }
             Action.CurrentMonth -> mutate { it.copy(month=YearMonth.from(it.today)) }
-            is Action.Filter -> mutate { it.copy(upcoming=action.upcoming) }
+            is Action.Filter -> mutate { it.copy(upcoming=false) } // Legacy event; future list no longer shown.
             is Action.Add -> newExpense(action.type)
             is Action.Select -> mutate { it.copy(selected=state.value.expenses.find { e->e.id==action.id },panel=Panel.DETAIL,error=null) }
             Action.Close -> { pendingBackup=null;mutate { it.copy(panel=Panel.NONE,error=null) } }

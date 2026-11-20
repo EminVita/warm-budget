@@ -69,4 +69,37 @@ class LedgerTest {
         assertEquals(0L,april.daily)
         assertEquals(30000L,march.allocated+april.allocated)
     }
+    @Test fun singleDayExpenseIsAveragedAcrossCalendarMonth() {
+        val e=expense("2026-03-20","2026-03-21",6000)
+        val before=Ledger.summary(listOf(e),YearMonth.of(2026,3),LocalDate.of(2026,3,19))
+        val after=Ledger.summary(listOf(e),YearMonth.of(2026,3),LocalDate.of(2026,3,21))
+        assertEquals(6000L,after.allocated)
+        assertEquals(194L,after.monthlyDaily(YearMonth.of(2026,3)))
+        assertEquals(before.monthlyDaily(YearMonth.of(2026,3)),after.monthlyDaily(YearMonth.of(2026,3)))
+        assertEquals(0L,after.daily)
+    }
+    @Test fun monthlyAverageUsesRealMonthLengthIncludingLeapYear() {
+        val total=Summary(0,0,6000,0)
+        assertEquals(200L,total.monthlyDaily(YearMonth.of(2026,11)))
+        assertEquals(194L,total.monthlyDaily(YearMonth.of(2026,3)))
+        assertEquals(214L,total.monthlyDaily(YearMonth.of(2026,2)))
+        assertEquals(207L,total.monthlyDaily(YearMonth.of(2024,2)))
+        assertEquals(0L,Summary(0,0,0,0).monthlyDaily(YearMonth.of(2026,11)))
+    }
+    @Test fun crossMonthAverageKeepsHistoricalAllocationAfterExpiry() {
+        val e=expense("2026-03-20","2026-04-03",30000)
+        val march=Ledger.summary(listOf(e),YearMonth.of(2026,3),LocalDate.of(2026,4,3))
+        val april=Ledger.summary(listOf(e),YearMonth.of(2026,4),LocalDate.of(2026,4,3))
+        assertEquals(829L,march.monthlyDaily(YearMonth.of(2026,3)))
+        assertEquals(143L,april.monthlyDaily(YearMonth.of(2026,4)))
+        assertEquals(30000L,march.allocated+april.allocated)
+    }
+    @Test fun futureRecordsAreRetainedButAppearOnlyOnStartDate() {
+        val future=expense("2026-11-20","2026-11-22",3000)
+        assertTrue(Ledger.active(listOf(future),LocalDate.of(2026,11,19)).isEmpty())
+        assertEquals(listOf(future),Ledger.active(listOf(future),LocalDate.of(2026,11,20)))
+        assertEquals(listOf(future),Ledger.active(listOf(future),LocalDate.of(2026,11,21)))
+        assertTrue(Ledger.active(listOf(future),LocalDate.of(2026,11,22)).isEmpty())
+        assertEquals(listOf(future),Ledger.history(listOf(future),LocalDate.of(2026,11,22)))
+    }
 }

@@ -43,7 +43,7 @@ import java.math.RoundingMode
             Text(c["estimate_hint"],style=MaterialTheme.typography.labelSmall,color=MaterialTheme.colorScheme.onSurfaceVariant)
         } }
         item { Row(horizontalArrangement=Arrangement.spacedBy(12.dp)) {
-            Metric(c["daily_cost"],money(s.summary.daily),Modifier.weight(1f),true)
+            Metric(c["monthly_daily_cost"],money(s.summary.monthlyDaily(s.month)),Modifier.weight(1f),true)
             Metric(c["monthly_cost"],money(s.summary.allocated),Modifier.weight(1f))
         } }
         item { Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(10.dp)) {
@@ -54,8 +54,6 @@ import java.math.RoundingMode
         } }
         item { Row(verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(8.dp)) {
             Text(c["expenses"],Modifier.weight(1f),fontWeight=FontWeight.SemiBold)
-            FilterChip(selected=!s.upcoming,onClick={onAction(Action.Filter(false))},label={Text(c["active"])})
-            FilterChip(selected=s.upcoming,onClick={onAction(Action.Filter(true))},label={Text(c["upcoming"])})
         } }
         if(s.visible.isEmpty())item { Empty(c["empty"]) }
         items(s.visible,key={it.id}) { expense -> ExpenseCard(expense,s,onAction) }

@@ -15,7 +15,8 @@ import com.livingbudget.app.presentation.*
             return@BudgetTheme
         }
         BackHandler(state.panel==Panel.NONE && state.page!=Page.HOME) { onAction(Action.Navigate(Page.HOME)) }
-        Scaffold(containerColor=MaterialTheme.colorScheme.background,bottomBar={
+        SageBackdrop {
+        Scaffold(containerColor=androidx.compose.ui.graphics.Color.Transparent,contentColor=MaterialTheme.colorScheme.onBackground,bottomBar={
             NavigationBar(containerColor=MaterialTheme.colorScheme.surface) {
                 Page.entries.forEach { page ->
                     NavigationBarItem(selected=state.page==page,onClick={onAction(Action.Navigate(page))},
@@ -25,6 +26,7 @@ import com.livingbudget.app.presentation.*
         }) { padding -> Box(Modifier.padding(padding)) {
             when(state.page) { Page.HOME->HomeScreen(state,onAction);Page.SETTINGS->SettingsScreen(state,onAction) }
         } }
+        }
         PanelHost(state,onAction)
         if(state.message!=null || (state.error!=null && state.panel==Panel.NONE))AlertDialog(
             onDismissRequest={onAction(Action.DismissMessage)},text={Text(c[state.message?:state.error!!])},

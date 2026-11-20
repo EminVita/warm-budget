@@ -18,4 +18,7 @@ for path in (root/'app/src/main/java/com/livingbudget/app/ui').glob('*.kt'):
     assert not any(token in source for token in ['BudgetDatabase','LedgerDao','ViewModel','Context','WorkManager']),path
     assert not re.search(r'Text\("[\u4e00-\u9fff]',source),path
 assert all(isinstance(value,str) for value in copy.values())
+home_source=(root/'app/src/main/java/com/livingbudget/app/ui/Screens.kt').read_text(encoding='utf-8')
+assert 'Action.Filter(' not in home_source
+assert 'c["upcoming"]' not in home_source
 print(f'PASS: {len(copy)} centralized copy keys; semantic action contracts; no UI persistence dependency.')

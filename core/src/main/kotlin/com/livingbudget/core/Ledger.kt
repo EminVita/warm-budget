@@ -70,9 +70,15 @@ data class Budget(val month: YearMonth, val amountMinor: Long, val recurring: Bo
 
 data class Summary(val required: Long, val paid: Long, val allocated: Long, val daily: Long) {
     val pending: Long get() = required - paid
+    /** Calendar-month average in minor units, not the amount incurred on a specific day. */
+    fun monthlyDaily(month: YearMonth): Long = BigDecimal.valueOf(allocated)
+        .divide(BigDecimal.valueOf(month.lengthOfMonth().toLong()),0,java.math.RoundingMode.HALF_UP)
+        .longValueExact()
 }
 
 object Ledger {
+    fun active(expenses: List<Expense>,today: LocalDate): List<Expense> =
+        expenses.filter { it.status(today)==ExpenseStatus.ACTIVE }
     fun amount(raw: String): Long? = try {
         if (!raw.matches(Regex("\\d{1,8}(\\.\\d{1,2})?"))) null
         else BigDecimal(raw).movePointRight(2).longValueExact().takeIf { it in 0..9_999_999_999L }
